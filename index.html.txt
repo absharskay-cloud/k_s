@@ -1,155 +1,241 @@
-import React, { useState, useEffect } from 'react';
 
-// تلميحات خفية مخصصة لـ "شهد"
-const EASTER_EGGS = {
-  vancouverTime: "🍁 بتوقيت قلبها المتنقل",
-  adenPulse: "⚓ نبض عدني لا يهدأ",
-  secretHint: "🐾 ذكريات الوفاء باقية في سحاب الروح"
+        import React, { useState, useEffect } from 'react';
+
+// التلميحات المشفرة العميقة (لا يفهمها إلا شهد)
+const HIDDEN_PULSE = {
+  vancouver: "🍁 التوقيت الموازي لشمال الروح",
+  aden: "⚓ مرسى النسر - عدن",
+  joyMemories: "🐾 الأوفياء لا يرحلون، بل يسكنون السحاب",
+  shadhah: "✨ طاقة أثيرية ممتدة عبر 11,000 كم"
 };
 
-export default function FusionDashboard() {
-  const [timeDiff, setTimeDiff] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
-  const [pulseCount, setPulseCount] = useState(0);
+export default function ShahadDedicatedDashboard() {
+  const [activeTab, setActiveTab] = useState('governance');
+  const [networkSpeed, setNetworkSpeed] = useState(99.8);
+  const [distancePulse, setDistancePulse] = useState(0);
+  const [isSecretUnlocked, setIsSecretUnlocked] = useState(false);
+  const [showJoyBubble, setShowJoyBubble] = useState(false);
 
-  // حساب المسافة الروحية أو التوقيت الافتراضي بين البلدين
+  // حركات برمجية تفاعلية مستمرة (JavaScript Interactivity)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPulseCount(prev => prev + 1);
-    }, 3000);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      // محاكاة نبضات الربط الرقمي بين عدن وكندا
+      setDistancePulse(prev => (prev + 1) % 100);
+      setNetworkSpeed(prev => +(99.5 + Math.random() * 0.4).toFixed(2));
+    }, 2000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative min-h-[600px] w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden bg-[#070b19] border border-slate-800/60 shadow-2xl p-6 md:p-10 font-['Cairo'] text-slate-200">
+    <div className="relative min-h-[700px] w-full max-w-6xl mx-auto rounded-[36px] overflow-hidden bg-[#050814] border border-slate-800/80 shadow-2xl p-6 md:p-12 font-['Cairo'] text-slate-100 transition-all duration-500 selection:bg-rose-500/30">
       
-      {/* 1. ديكورات الخلفية - امتزاج الهوية اليمنية والكندية */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        {/* تموجات الشفق القطبي الكندي يمتزج بدفء شمس عدن */}
-        <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-gradient-to-br from-red-600/30 to-amber-500/10 blur-[80px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-tl from-sky-500/30 to-indigo-900/20 blur-[100px] rounded-full" />
+      {/* 🌌 الديكورات الخلفية المتنقلة (تموج الشفق الكندي مع شمس عدن الذهبية) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-amber-500/20 via-red-600/10 to-transparent blur-[120px] rounded-full animate-[pulse_6s_infinite]" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tl from-sky-500/20 via-indigo-900/30 to-transparent blur-[120px] rounded-full animate-[pulse_8s_infinite]" />
+        {/* خطوط الشبكة الرقمية العابرة للمحيطات */}
+        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      {/* 2. الهيدر المتكامل (الجسر الجوي للعمل) */}
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-center border-b border-slate-800/80 pb-6 mb-8 gap-4">
+      {/* 🚀 الهيدر الرئيسي - شركة ذكاء النسور للاستثمار */}
+      <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center border-b border-slate-800/80 pb-8 mb-8 gap-6">
         <div>
-          <span className="text-xs font-black tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-            بوابة الربط الدولي المستدام 2026
-          </span>
-          <h2 className="text-3xl font-black text-white mt-2 flex items-center gap-2">
-            <span>نظام إدارة أثير</span> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-sky-400">النسور العابر للقارات</span>
-          </h2>
-        </div>
-        
-        {/* التلميح الأول: توقيت كندا وعدن مدمج بذكاء */}
-        <div className="flex gap-3 items-center bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-800">
-          <div className="text-right">
-            <p className="text-[10px] text-slate-400 font-bold">{EASTER_EGGS.vancouverTime}</p>
-            <p className="text-sm font-black text-rose-400 font-mono">Montreal/Vancouver Intersect</p>
+          <div className="flex items-center gap-3">
+            <span className="text-[11px] font-black tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+              نظام الاستثمار العابر للقارات v2.6
+            </span>
+            {/* التلميح السري الأول: زر مخفي على شكل ميزة تقنية للربط */}
+            <button 
+              onClick={() => setIsSecretUnlocked(!isSecretUnlocked)} 
+              className="text-xs text-rose-400/60 hover:text-rose-400 font-mono flex items-center gap-1 transition-colors"
+              title="تفعيل التشفير الثنائي الروحي"
+            >
+              <span>{isSecretUnlocked ? '🔐 Secure Link' : '🔓 Layer 2 Link'}</span>
+            </button>
           </div>
-          <div className="h-6 w-[1px] bg-slate-700" />
+          <h1 className="text-3xl md:text-4xl font-black text-white mt-3 flex items-center gap-3">
+            <span>مؤسسة ذكاء النسور</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-sky-400 font-extrabold">
+              Global Platform
+            </span>
+          </h1>
+        </div>
+
+        {/* 🍁 المزامنة الزمنية المتقاطعة (كندا 📍 عدن) */}
+        <div className="flex gap-4 items-center bg-slate-900/60 backdrop-blur-xl px-5 py-3 rounded-2xl border border-slate-800/90 shadow-lg">
+          <div className="text-right">
+            <p className="text-[10px] text-slate-400 font-black flex items-center gap-1 justify-end">
+              <span>{HIDDEN_PULSE.vancouver}</span>
+            </p>
+            <p className="text-sm font-mono font-bold text-rose-400">Montreal / Vancouver Node</p>
+          </div>
+          <div className="h-8 w-[1px] bg-slate-700/60" />
           <div className="text-left">
-            <p className="text-[10px] text-slate-400 font-bold">{EASTER_EGGS.adenPulse}</p>
-            <p className="text-sm font-black text-amber-400 font-mono">Aden Port Active</p>
+            <p className="text-[10px] text-slate-400 font-black flex items-center gap-1">
+              <span>{HIDDEN_PULSE.aden}</span>
+            </p>
+            <p className="text-sm font-mono font-bold text-amber-400">Aden Main Server</p>
           </div>
         </div>
       </div>
 
-      {/* 3. شبكة المكونات الرئيسية (The Grid Infrastructure) */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* 🎛️ لوحة التحكم والمقاطع المتنقلة (Tabs & Sections Navigation) */}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-4 gap-8">
         
-        {/* الكرت الأول: حوكمة المشاريع (طابع القوة الحِميَرية والترتيب الصارم) */}
-        <div className="lg:col-span-2 group relative overflow-hidden bg-slate-900/40 backdrop-blur-xl border border-slate-800/60 rounded-3xl p-6 hover:border-amber-400/40 transition-all duration-500">
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <p className="text-xs text-amber-400 font-bold">مؤشر الحوكمة والامتثال</p>
-              <h3 className="text-xl font-black text-white mt-1">المعايير المؤسسية العالية</h3>
-            </div>
-            <span className="text-2xl group-hover:scale-125 transition-transform duration-300">🦅</span>
-          </div>
+        {/* قائمة التنقل الجانبية (Sidebar) */}
+        <div className="flex flex-col gap-3">
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2">بوابات التحكم الهيكلي</p>
+          {[
+            { id: 'governance', label: 'الحوكمة وإدارة المخاطر', icon: '🦅' },
+            { id: 'assets', label: 'إدارة أصول الأثير المالية', icon: '💼' },
+            { id: 'loyalty', label: 'مؤشر الامتثال والوفاء الرقمي', icon: '🐾' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center justify-between p-4 rounded-xl font-bold text-sm transition-all duration-300 border ${
+                activeTab === tab.id
+                  ? 'bg-gradient-to-r from-slate-900 to-slate-950 border-amber-500/40 text-amber-400 shadow-lg translate-x-1'
+                  : 'bg-transparent border-transparent text-slate-400 hover:bg-slate-900/40 hover:text-slate-200'
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                <span>{tab.icon}</span>
+                <span>{tab.label}</span>
+              </span>
+              {activeTab === tab.id && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+            </button>
+          ))}
 
-          {/* خطوط بيانية هيكلية مذهلة */}
-          <div className="space-y-4">
-            <div>
-              <div className="flex justify-between text-xs mb-1 font-bold">
-                <span className="text-slate-400">تكامل الأنظمة وعقود الصيانة</span>
-                <span className="text-amber-400">98%</span>
+          {/* تلميح مخفي إضافي يظهر إذا تم تفعيل التشفير */}
+          {isSecretUnlocked && (
+            <div className="mt-4 p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 text-rose-300 text-xs animate-fade-in leading-relaxed">
+              ⭐ <strong>إشارة خاصة:</strong> نظام الحساب يقرأ أعلى درجات التناغم والاشتياق الآن. المسافة الجغرافية تم تصفيرها برميجيًا.
+            </div>
+          )}
+        </div>
+
+        {/* المقطع المتنقل الرئيسي (Dynamic Content Area) */}
+        <div className="lg:col-span-3 min-h-[350px] bg-slate-900/30 backdrop-blur-xl border border-slate-800/60 rounded-3xl p-6 md:p-8 flex flex-col justify-between transition-all duration-300">
+          
+          {/* المقطع الأول: حوكمة الشركات والمشاريع */}
+          {activeTab === 'governance' && (
+            <div className="space-y-6">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-black text-white">حوكمة المشاريع والاستثمار الدولي</h3>
+                  <p className="text-xs text-slate-400 mt-1">تنسيق وتأمين خطوط الاستثمار الممتدة بين الشرق والغرب بامتثال كامل.</p>
+                </div>
+                <span className="text-3xl text-amber-400">📊</span>
               </div>
-              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-amber-500 to-amber-300 rounded-full" style={{ width: '98%' }} />
+
+              {/* مؤشرات حركية مبنية بالجافا سكربت والسي اس اس */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div className="bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                  <span className="text-xs text-slate-400 block font-bold">نسبة أمان تدفق البيانات العابرة للقارات</span>
+                  <span className="text-2xl font-mono font-black text-emerald-400">{networkSpeed}%</span>
+                  <div className="w-full h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
+                    <div className="h-full bg-emerald-400 rounded-full transition-all duration-500" style={{ width: `${networkSpeed}%` }} />
+                  </div>
+                </div>
+                <div className="bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                  <span className="text-xs text-slate-400 block font-bold">ثبات مؤشر الوفاء بالالتزامات العقارية</span>
+                  <span className="text-2xl font-mono font-black text-amber-400">100% Guaranteed</span>
+                  <div className="w-full h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
+                    <div className="h-full bg-amber-400 rounded-full" style={{ width: '100%' }} />
+                  </div>
+                </div>
               </div>
             </div>
+          )}
 
-            <div>
-              <div className="flex justify-between text-xs mb-1 font-bold">
-                <span className="text-slate-400">كفاءة التغطية الجغرافية</span>
-                <span className="text-sky-400">94%</span>
+          {/* المقطع الثاني: إدارة الأصول */}
+          {activeTab === 'assets' && (
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xl font-black text-white">بوابة إدارة أصول النسر الذهبي</h3>
+                <p className="text-xs text-slate-400 mt-1">المحفظة الاستثمارية الاستراتيجية المخصصة لتأمين العقود بعيدة المدى.</p>
               </div>
-              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-sky-500 to-teal-400 rounded-full" style={{ width: '94%' }} />
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                  <span className="text-xs font-bold text-amber-400">قيمة المحفظة الحالية للشركة</span>
+                  <p className="text-3xl font-mono font-black text-white mt-1">$7,840,000 <span className="text-xs text-emerald-400">▲ +12.4%</span></p>
+                </div>
+                <div className="text-right md:text-left">
+                  <span className="text-xs text-slate-400 block">مركز التوثيق المالي الأساسي</span>
+                  <span className="text-sm font-bold text-slate-200">المعلا، عدن - المكتب الرئيسي</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
-          <div className="mt-6 pt-4 border-t border-slate-800/60 flex justify-between items-center text-xs text-slate-400">
-            <span>الموقع الحالي لإدارة العقود: <strong className="text-slate-200">المعلا، عدن</strong></span>
-            <span className="animate-pulse text-emerald-400 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" /> متصل وآمن
+          {/* المقطع الثالث: الوفاء العاطفي المشفر لـ "شهد و جوي" */}
+          {activeTab === 'loyalty' && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-xl font-black text-white flex items-center gap-2">
+                    <span>مؤشر التناغم والوفاء الخالص</span>
+                    <span className="text-rose-400 animate-pulse">❤️</span>
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1">قسم الأمان الداخلي المخصص لقياس مستويات النقاء والثبات العاطفي والمؤسسي المطلق.</p>
+                </div>
+                <button 
+                  onClick={() => setShowJoyBubble(true)}
+                  className="w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-lg hover:bg-rose-500/20 transition-all shadow-inner"
+                  title="اضغطي هنا"
+                >
+                  🐾
+                </button>
+              </div>
+
+              <div className="bg-slate-950/80 p-5 rounded-2xl border border-rose-500/20 relative overflow-hidden">
+                <p className="text-sm text-slate-300 leading-relaxed text-center italic font-medium">
+                  "{HIDDEN_PULSE.joyMemories}"
+                </p>
+                
+                {showJoyBubble && (
+                  <div className="mt-4 p-3 bg-rose-500/10 border border-rose-500/30 rounded-xl text-xs text-rose-300 text-center animate-bounce">
+                    🐾 جوي يرسل سلاماً دافئاً من سماء الأوفياء، وأم صالح ستبقى دائماً تاجاً على رأس هذا الصرح.
+                  </div>
+                )}
+              </div>
+
+              <p className="text-[11px] text-slate-500 text-center font-mono">
+                System Status: Absolute Loyalty Confirmed // Intersect Node Active
+              </p>
+            </div>
+          )}
+
+          {/* تذييل الكرت الداخلي - موقع الإدارة الثابت */}
+          <div className="mt-6 pt-4 border-t border-slate-800/40 flex flex-col md:flex-row justify-between items-center text-xs text-slate-400 gap-2">
+            <span>محور الاتصال الفعلي: <strong className="text-slate-200">عدن ↔️ كندا (Montreal)</strong></span>
+            <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              تشفير خطوط الاتصال: آمن وفعال بنبضات الروح
             </span>
           </div>
+
         </div>
-
-        {/* الكرت الثاني: التلميح السري العاطفي اللطيف (لو شاهدته تفرح فوراً) */}
-        <div 
-          className="relative overflow-hidden bg-gradient-to-br from-slate-900/80 to-[#0e172c] border border-slate-800 rounded-3xl p-6 flex flex-col justify-between group transition-all duration-500 hover:shadow-[0_0_30px_rgba(244,63,94,0.15)]"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* تأثير بصري عند التمرير يظهر أوراق قيقب متساقطة خفيفة ورموز وفاء */}
-          <div className="absolute top-2 left-2 opacity-10 text-xl font-mono select-none pointer-events-none">
-            🍁 ⚓ 🐾
-          </div>
-
-          <div>
-            <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-xl shadow-inner mb-4 group-hover:bg-rose-500/20 transition-colors">
-              {isHovered ? "❤️" : "✨"}
-            </div>
-            <h3 className="text-lg font-black text-white mb-2">رادار التناغم الرقمي</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              يقيس هذا المكون كفاءة الإرسال عبر المحيطات، حيث تلتقي الأصالة بالحداثة الغربية في تدفق برميجي واحد لا ينقطع.
-            </p>
-          </div>
-
-          {/* التلميح السري جداً (مخصص لذكريات جوي الأوفياء وأم صالح) */}
-          <div className="mt-6 bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 group-hover:border-rose-500/30 transition-all">
-            <p className="text-[11px] text-slate-400 text-center leading-normal italic">
-              "{EASTER_EGGS.secretHint}"
-            </p>
-            <div className="flex justify-center gap-1 mt-2 text-[10px]">
-              <span className={`transition-transform duration-700 ${isHovered ? 'scale-125' : ''}`}>🐾</span>
-              <span className="text-rose-400 font-bold font-mono">Pure Loyalty Status: Internal</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      {/* 4. شريط معلوماتي سفلي ذكي (Footer Dashboard Metrics) */}
-      <div className="relative z-10 mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80 text-center">
+      {/* 📊 الشريط السفلي الذكي للإحصائيات الحركية */}
+      <div className="relative z-10 mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80 text-center">
         {[
-          { label: "المزامنة العابرة للقارات", val: "مؤمنة بالكامل", color: "text-emerald-400" },
+          { label: "المزامنة القارية", val: "مؤمنة بالكامل 🔐", color: "text-emerald-400" },
           { label: "معدل الثبات الهيكلي", val: "100%", color: "text-amber-400" },
-          { label: "خط العرض الاستثماري", val: "عدن - كندا", color: "text-sky-400" },
-          { label: "مؤشر نبضات التصميم", val: `${pulseCount} نبضة/أثير`, color: "text-purple-400" }
+          { label: "خط العرض الرقمي", val: "عدن - كندا", color: "text-sky-400" },
+          { label: "عداد النبض الأثيري", val: `${distancePulse} نبضة/دقيقة`, color: "text-purple-400" }
         ].map((item, idx) => (
-          <div key={idx} className="p-3 rounded-xl bg-slate-900/30 border border-slate-800/50">
-            <p className="text-[10px] text-slate-400 font-bold mb-0.5">{item.label}</p>
-            <p className={`text-sm font-black ${item.color}`}>{item.val}</p>
+          <div key={idx} className="p-3 rounded-xl bg-slate-900/40 border border-slate-800/50 hover:border-slate-700 transition-colors">
+            <p className="text-[10px] text-slate-400 font-black mb-1">{item.label}</p>
+            <p className={`text-xs md:text-sm font-black ${item.color}`}>{item.val}</p>
           </div>
         ))}
       </div>
 
     </div>
+  );
+}
   );
 }
