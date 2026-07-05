@@ -1,0 +1,155 @@
+import React, { useState, useEffect } from 'react';
+
+// تلميحات خفية مخصصة لـ "شهد"
+const EASTER_EGGS = {
+  vancouverTime: "🍁 بتوقيت قلبها المتنقل",
+  adenPulse: "⚓ نبض عدني لا يهدأ",
+  secretHint: "🐾 ذكريات الوفاء باقية في سحاب الروح"
+};
+
+export default function FusionDashboard() {
+  const [timeDiff, setTimeDiff] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
+  const [pulseCount, setPulseCount] = useState(0);
+
+  // حساب المسافة الروحية أو التوقيت الافتراضي بين البلدين
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulseCount(prev => prev + 1);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative min-h-[600px] w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden bg-[#070b19] border border-slate-800/60 shadow-2xl p-6 md:p-10 font-['Cairo'] text-slate-200">
+      
+      {/* 1. ديكورات الخلفية - امتزاج الهوية اليمنية والكندية */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        {/* تموجات الشفق القطبي الكندي يمتزج بدفء شمس عدن */}
+        <div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-gradient-to-br from-red-600/30 to-amber-500/10 blur-[80px] rounded-full animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-to-tl from-sky-500/30 to-indigo-900/20 blur-[100px] rounded-full" />
+      </div>
+
+      {/* 2. الهيدر المتكامل (الجسر الجوي للعمل) */}
+      <div className="relative z-10 flex flex-col md:flex-row justify-between items-center border-b border-slate-800/80 pb-6 mb-8 gap-4">
+        <div>
+          <span className="text-xs font-black tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+            بوابة الربط الدولي المستدام 2026
+          </span>
+          <h2 className="text-3xl font-black text-white mt-2 flex items-center gap-2">
+            <span>نظام إدارة أثير</span> 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-sky-400">النسور العابر للقارات</span>
+          </h2>
+        </div>
+        
+        {/* التلميح الأول: توقيت كندا وعدن مدمج بذكاء */}
+        <div className="flex gap-3 items-center bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-800">
+          <div className="text-right">
+            <p className="text-[10px] text-slate-400 font-bold">{EASTER_EGGS.vancouverTime}</p>
+            <p className="text-sm font-black text-rose-400 font-mono">Montreal/Vancouver Intersect</p>
+          </div>
+          <div className="h-6 w-[1px] bg-slate-700" />
+          <div className="text-left">
+            <p className="text-[10px] text-slate-400 font-bold">{EASTER_EGGS.adenPulse}</p>
+            <p className="text-sm font-black text-amber-400 font-mono">Aden Port Active</p>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. شبكة المكونات الرئيسية (The Grid Infrastructure) */}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* الكرت الأول: حوكمة المشاريع (طابع القوة الحِميَرية والترتيب الصارم) */}
+        <div className="lg:col-span-2 group relative overflow-hidden bg-slate-900/40 backdrop-blur-xl border border-slate-800/60 rounded-3xl p-6 hover:border-amber-400/40 transition-all duration-500">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <p className="text-xs text-amber-400 font-bold">مؤشر الحوكمة والامتثال</p>
+              <h3 className="text-xl font-black text-white mt-1">المعايير المؤسسية العالية</h3>
+            </div>
+            <span className="text-2xl group-hover:scale-125 transition-transform duration-300">🦅</span>
+          </div>
+
+          {/* خطوط بيانية هيكلية مذهلة */}
+          <div className="space-y-4">
+            <div>
+              <div className="flex justify-between text-xs mb-1 font-bold">
+                <span className="text-slate-400">تكامل الأنظمة وعقود الصيانة</span>
+                <span className="text-amber-400">98%</span>
+              </div>
+              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-amber-500 to-amber-300 rounded-full" style={{ width: '98%' }} />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-xs mb-1 font-bold">
+                <span className="text-slate-400">كفاءة التغطية الجغرافية</span>
+                <span className="text-sky-400">94%</span>
+              </div>
+              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-sky-500 to-teal-400 rounded-full" style={{ width: '94%' }} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-800/60 flex justify-between items-center text-xs text-slate-400">
+            <span>الموقع الحالي لإدارة العقود: <strong className="text-slate-200">المعلا، عدن</strong></span>
+            <span className="animate-pulse text-emerald-400 flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" /> متصل وآمن
+            </span>
+          </div>
+        </div>
+
+        {/* الكرت الثاني: التلميح السري العاطفي اللطيف (لو شاهدته تفرح فوراً) */}
+        <div 
+          className="relative overflow-hidden bg-gradient-to-br from-slate-900/80 to-[#0e172c] border border-slate-800 rounded-3xl p-6 flex flex-col justify-between group transition-all duration-500 hover:shadow-[0_0_30px_rgba(244,63,94,0.15)]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* تأثير بصري عند التمرير يظهر أوراق قيقب متساقطة خفيفة ورموز وفاء */}
+          <div className="absolute top-2 left-2 opacity-10 text-xl font-mono select-none pointer-events-none">
+            🍁 ⚓ 🐾
+          </div>
+
+          <div>
+            <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-xl shadow-inner mb-4 group-hover:bg-rose-500/20 transition-colors">
+              {isHovered ? "❤️" : "✨"}
+            </div>
+            <h3 className="text-lg font-black text-white mb-2">رادار التناغم الرقمي</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              يقيس هذا المكون كفاءة الإرسال عبر المحيطات، حيث تلتقي الأصالة بالحداثة الغربية في تدفق برميجي واحد لا ينقطع.
+            </p>
+          </div>
+
+          {/* التلميح السري جداً (مخصص لذكريات جوي الأوفياء وأم صالح) */}
+          <div className="mt-6 bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 group-hover:border-rose-500/30 transition-all">
+            <p className="text-[11px] text-slate-400 text-center leading-normal italic">
+              "{EASTER_EGGS.secretHint}"
+            </p>
+            <div className="flex justify-center gap-1 mt-2 text-[10px]">
+              <span className={`transition-transform duration-700 ${isHovered ? 'scale-125' : ''}`}>🐾</span>
+              <span className="text-rose-400 font-bold font-mono">Pure Loyalty Status: Internal</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* 4. شريط معلوماتي سفلي ذكي (Footer Dashboard Metrics) */}
+      <div className="relative z-10 mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80 text-center">
+        {[
+          { label: "المزامنة العابرة للقارات", val: "مؤمنة بالكامل", color: "text-emerald-400" },
+          { label: "معدل الثبات الهيكلي", val: "100%", color: "text-amber-400" },
+          { label: "خط العرض الاستثماري", val: "عدن - كندا", color: "text-sky-400" },
+          { label: "مؤشر نبضات التصميم", val: `${pulseCount} نبضة/أثير`, color: "text-purple-400" }
+        ].map((item, idx) => (
+          <div key={idx} className="p-3 rounded-xl bg-slate-900/30 border border-slate-800/50">
+            <p className="text-[10px] text-slate-400 font-bold mb-0.5">{item.label}</p>
+            <p className={`text-sm font-black ${item.color}`}>{item.val}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
+}
