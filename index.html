@@ -1,97 +1,288 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Heart, MapPin, Sparkles, Feather } from 'lucide-react';
 
-// التلميحات المشفرة العميقة - بروتوكول اتصال لا يفهمه إلا المطلعون
-const SYSTEM_CORE = {
-  northNode: "🍁 توقيت المسار الشمالي المستدام",
-  adenBase: "⚓ مرسى النسر الرئيسي - عدن",
-  legacyProtocol: "🐾 الأوفياء يسكنون السحاب، والعهد ثابت لا يتبدل",
-  identity: "✨ أم صالح لإدارة الترابط الرقمي السيادي"
+// ثوابت الهوية البصرية لعالم "الباندا العابرة للقارات"
+const PALETTE = {
+  cream: '#FBF3E7',
+  ink: '#20201C',
+  bamboo: '#4C7A4E',
+  bamboo_light: '#8FBB86',
+  blush: '#EFA8B4',
+  gold: '#E3AE4F',
 };
 
-export default function CorporateEaglesDashboard() {
-  const [activeTab, setActiveTab] = useState('governance');
-  const [dataSync, setDataSync] = useState(99.9);
-  const [pulse, setPulse] = useState(0);
-  const [isTunnelOpen, setIsTunnelOpen] = useState(false);
-  
-  // 🎵 تعريف المرجع الصوتي للترحيب المهيب
-  const welcomeAudioRef = useRef(null);
+const LOVE_NOTES = [
+  {
+    id: 'n1',
+    title: 'مسافة لا تُحسب بالكيلومترات',
+    body: 'يقولون إن بيننا آلاف الكيلومترات، لكن الباندا لا تقيس المسافة بالخرائط، بل بعدد المرات التي تفكر فيها بمن تحب قبل النوم.',
+  },
+  {
+    id: 'n2',
+    title: 'أوراق الخيزران المشتركة',
+    body: 'كل يوم نمرّ فيه بعيدين هو ورقة خيزران جديدة تُضاف إلى عشّنا، ونحن نبنيه ورقة بعد ورقة حتى يكفي لاثنين.',
+  },
+  {
+    id: 'n3',
+    title: 'أبيض وأسود، ولكن دافئ',
+    body: 'مثل فراء الباندا، حياتنا فيها تباين واضح: ليل وبعد، ونهار وقرب. لكن بينهما دفء لا يتغير مهما اختلف التوقيت.',
+  },
+];
+
+const WHY_PANDA = [
+  {
+    icon: '🎋',
+    label: 'الصبر',
+    text: 'الباندا تقضي ساعات طويلة في هدوء وصبر من أجل غايتها. هكذا هو انتظارنا للقاء القادم.',
+  },
+  {
+    icon: '🖤',
+    label: 'التوازن',
+    text: 'أبيض وأسود يكتملان في كائن واحد، كما تكتمل قصتنا حين يلتقي شمالنا بجنوبنا.',
+  },
+  {
+    icon: '🌍',
+    label: 'الرحلة',
+    text: 'من غابات بعيدة إلى غابات أخرى، الباندا تذكّرنا أن الحب الحقيقي يقطع القارات ولا يذبل.',
+  },
+];
+
+export default function CrossContinentalPandaLove() {
+  const [activeTab, setActiveTab] = useState('bridge');
+  const [gap, setGap] = useState(100); // 100 = أبعد ما يكون، 0 = التقيا
+  const [isClosing, setIsClosing] = useState(false);
+  const [heartbeat, setHeartbeat] = useState(0);
+  const [activeNote, setActiveNote] = useState(null);
 
   useEffect(() => {
-    // تحميل المقطع الصوتي (استبدل الرابط بمسار ملفك الخاص)
-    welcomeAudioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+    const t = setInterval(() => setHeartbeat((h) => (h + 1) % 100), 900);
+    return () => clearInterval(t);
   }, []);
 
-  // حلقة برمجية لتحديث البيانات والنبضات
   useEffect(() => {
-    const timer = setInterval(() => {
-      setPulse(p => (p + 1) % 100);
-      setDataSync(prev => +(99.6 + Math.random() * 0.35).toFixed(2));
-    }, 2000);
-    return () => clearInterval(timer);
-  }, []);
+    if (!isClosing) return;
+    const t = setInterval(() => {
+      setGap((g) => {
+        if (g <= 0) {
+          clearInterval(t);
+          return 0;
+        }
+        return g - 2;
+      });
+    }, 40);
+    return () => clearInterval(t);
+  }, [isClosing]);
 
-  // دالة تفعيل النفق الرقمي وتشغيل الصوت تفاعلياً
-  const toggleTunnel = () => {
-    const newState = !isTunnelOpen;
-    setIsTunnelOpen(newState);
-    
-    if (newState && welcomeAudioRef.current) {
-      welcomeAudioRef.current.play().catch(e => console.log("تحذير أمني: المتصفح يمنع التشغيل التلقائي"));
-    }
+  const resetBridge = () => {
+    setIsClosing(false);
+    setGap(100);
   };
 
   return (
-    <div className="relative min-h-[750px] w-full max-w-6xl mx-auto rounded-[40px] bg-[#040712] border border-slate-800/90 shadow-2xl p-8 font-['Cairo'] text-slate-200">
-      
-      {/* 🌌 الديكورات الخلفية - محاكاة المسافات */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 blur-[150px] rounded-full animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-sky-500/10 blur-[150px] rounded-full animate-pulse" />
+    <div
+      dir="rtl"
+      className="relative w-full max-w-5xl mx-auto rounded-[36px] overflow-hidden border shadow-2xl font-['Cairo'] transition-all duration-700"
+      style={{ background: PALETTE.cream, borderColor: '#E7DCC8', color: PALETTE.ink }}
+    >
+      {/* زخرفة خلفية هادئة على شكل أوراق خيزران متناثرة */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
+        <div
+          className="absolute -top-20 -left-16 w-72 h-72 rounded-full blur-3xl"
+          style={{ background: PALETTE.bamboo }}
+        />
+        <div
+          className="absolute -bottom-24 -right-10 w-80 h-80 rounded-full blur-3xl"
+          style={{ background: PALETTE.blush }}
+        />
       </div>
 
       {/* الهيدر */}
-      <div className="relative z-10 border-b border-slate-800/70 pb-8 mb-8 flex justify-between items-center">
+      <div className="relative z-10 px-6 md:px-12 pt-10 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-5 border-b" style={{ borderColor: '#E7DCC8' }}>
         <div>
-          <span className="text-[10px] font-black text-amber-400 bg-amber-400/10 px-3 py-1 rounded border border-amber-400/20">
-            SYSTEM STATUS: OPERATIONAL
+          <span
+            className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest uppercase px-3 py-1 rounded-full border"
+            style={{ color: PALETTE.bamboo, borderColor: PALETTE.bamboo_light, background: '#F2F7EE' }}
+          >
+            <Feather size={12} /> حكاية باندا عابرة للقارات
           </span>
-          <h1 className="text-4xl font-black text-white mt-3">مؤسسة ذكاء النسور</h1>
+          <h1 className="text-3xl md:text-5xl font-black mt-4 leading-tight">
+            حبّ بحجم قارتين
+            <span className="block text-xl md:text-2xl font-bold mt-2" style={{ color: PALETTE.blush }}>
+              اثنان في غابتين، وقلب واحد بينهما
+            </span>
+          </h1>
         </div>
-        
-        <button 
-          onClick={toggleTunnel}
-          className={`px-6 py-2 rounded-xl font-bold transition-all ${isTunnelOpen ? 'bg-rose-500/20 text-rose-400' : 'bg-slate-900 text-slate-400'}`}
-        >
-          {isTunnelOpen ? '🔐 النفق السيادي نشط 🎵' : '🔓 تفعيل رابط الاتصال'}
-        </button>
+        <div className="flex items-center gap-2 text-sm font-bold" style={{ color: PALETTE.blush }}>
+          <Heart size={18} className={heartbeat % 20 < 10 ? 'scale-110' : 'scale-100'} style={{ transition: 'transform .4s' }} fill={PALETTE.blush} />
+          نبض مستمر منذ أول رسالة
+        </div>
       </div>
 
-      {/* الشبكة الرئيسية */}
-      <div className="grid grid-cols-4 gap-8">
-        <div className="col-span-1 space-y-4">
-          {['governance', 'assets', 'telemetry'].map(id => (
-            <button key={id} onClick={() => setActiveTab(id)} className={`block w-full p-4 text-right rounded-xl font-bold ${activeTab === id ? 'bg-slate-900 text-amber-400' : 'text-slate-500'}`}>
-              {id === 'governance' ? '🦅 حوكمة المسارات' : id === 'assets' ? '💼 أصول الأثير' : '✨ مصفوفة أم صالح'}
-            </button>
-          ))}
-        </div>
+      {/* التبويبات */}
+      <div className="relative z-10 flex flex-wrap gap-2 px-6 md:px-12 pt-6">
+        {[
+          { id: 'bridge', label: 'جسر الخيزران', icon: '🎋' },
+          { id: 'letters', label: 'رسائل الشوق', icon: '💌' },
+          { id: 'why', label: 'لماذا الباندا', icon: '🐼' },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-black transition-all duration-300 border"
+            style={
+              activeTab === tab.id
+                ? { background: PALETTE.ink, color: PALETTE.cream, borderColor: PALETTE.ink }
+                : { background: 'transparent', color: PALETTE.ink, borderColor: '#DCCFB4' }
+            }
+          >
+            <span>{tab.icon}</span>
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-        <div className="col-span-3 bg-slate-900/20 backdrop-blur-xl border border-slate-800 rounded-3xl p-8">
-          {activeTab === 'telemetry' && (
-            <div className="space-y-6 animate-in fade-in duration-1000">
-              <h3 className="text-2xl font-black text-white">{SYSTEM_CORE.identity}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                "{SYSTEM_CORE.legacyProtocol}"
-              </p>
-              <div className="p-6 bg-slate-950 rounded-2xl border border-rose-500/20 text-center">
-                <span className="text-rose-400 font-mono text-xs">نظام الربط: 11,000 كم - مستقر تماماً</span>
+      {/* المحتوى */}
+      <div className="relative z-10 px-6 md:px-12 py-10 min-h-[420px]">
+        {activeTab === 'bridge' && (
+          <div className="space-y-8">
+            <p className="text-sm max-w-xl" style={{ color: '#5B5648' }}>
+              اضغط على الزر لتقريب الباندا الشمالية من الباندا الجنوبية، خطوة خيزران في كل مرة، حتى تلتقيا في المنتصف.
+            </p>
+
+            <div className="flex items-center justify-between gap-4">
+              {/* باندا الشمال */}
+              <PandaFace flip={false} label="غابة الشمال" color={PALETTE.bamboo} />
+
+              {/* الجسر */}
+              <div className="flex-1 relative h-16 flex items-center">
+                <div className="w-full h-2 rounded-full" style={{ background: '#E7DCC8' }} />
+                <div
+                  className="absolute h-2 rounded-full transition-all duration-500"
+                  style={{
+                    background: `linear-gradient(90deg, ${PALETTE.bamboo}, ${PALETTE.blush})`,
+                    width: `${100 - gap}%`,
+                  }}
+                />
+                <Heart
+                  size={22}
+                  fill={PALETTE.blush}
+                  className="absolute top-1/2 -translate-y-1/2 transition-all duration-500"
+                  style={{ left: `${100 - gap}%`, transform: 'translate(-50%, -50%)', color: PALETTE.blush }}
+                />
               </div>
+
+              {/* باندا الجنوب */}
+              <PandaFace flip={true} label="غابة الجنوب" color={PALETTE.gold} />
             </div>
-          )}
-          {/* محتوى إضافي حسب الحاجة */}
-        </div>
+
+            <div className="flex items-center justify-center gap-4 pt-2">
+              <button
+                onClick={() => setIsClosing(true)}
+                disabled={gap === 0}
+                className="px-6 py-3 rounded-2xl font-black text-sm transition-all duration-300 disabled:opacity-40"
+                style={{ background: PALETTE.ink, color: PALETTE.cream }}
+              >
+                {gap === 0 ? 'التقينا 🎉' : 'قرّب المسافة خطوة خطوة'}
+              </button>
+              <button
+                onClick={resetBridge}
+                className="px-5 py-3 rounded-2xl font-black text-sm border"
+                style={{ borderColor: '#DCCFB4', color: PALETTE.ink }}
+              >
+                أعد المسافة
+              </button>
+            </div>
+
+            <p className="text-center text-xs font-mono" style={{ color: '#8A8371' }}>
+              الفجوة المتبقية: <strong style={{ color: PALETTE.blush }}>{gap}%</strong>
+            </p>
+          </div>
+        )}
+
+        {activeTab === 'letters' && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {LOVE_NOTES.map((note) => (
+              <button
+                key={note.id}
+                onClick={() => setActiveNote(activeNote === note.id ? null : note.id)}
+                className="text-right p-5 rounded-3xl border transition-all duration-300 hover:shadow-md"
+                style={{
+                  borderColor: activeNote === note.id ? PALETTE.blush : '#E7DCC8',
+                  background: activeNote === note.id ? '#FFF' : 'transparent',
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2" style={{ color: PALETTE.bamboo }}>
+                  <Sparkles size={14} />
+                  <span className="text-xs font-black uppercase tracking-wide">رسالة</span>
+                </div>
+                <h4 className="font-black text-base mb-2">{note.title}</h4>
+                {activeNote === note.id && (
+                  <p className="text-xs leading-relaxed" style={{ color: '#5B5648' }}>
+                    {note.body}
+                  </p>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {activeTab === 'why' && (
+          <div className="space-y-5">
+            {WHY_PANDA.map((item, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 p-5 rounded-2xl border"
+                style={{ borderColor: '#E7DCC8' }}
+              >
+                <span className="text-3xl">{item.icon}</span>
+                <div>
+                  <h4 className="font-black text-sm mb-1" style={{ color: PALETTE.bamboo }}>
+                    {item.label}
+                  </h4>
+                  <p className="text-xs leading-relaxed" style={{ color: '#5B5648' }}>
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* فوتر */}
+      <div
+        className="relative z-10 px-6 md:px-12 py-5 border-t flex flex-col md:flex-row justify-between items-center gap-2 text-[11px] font-bold"
+        style={{ borderColor: '#E7DCC8', color: '#8A8371' }}
+      >
+        <span className="flex items-center gap-1">
+          <MapPin size={12} /> بين غابتين، وقلب واحد لا ينقسم
+        </span>
+        <span>حكاية باندا صغيرة، لحبّ لا يعرف حدود القارات</span>
+      </div>
+    </div>
+  );
+}
+
+function PandaFace({ flip, label, color }) {
+  return (
+    <div className="flex flex-col items-center gap-2" style={{ transform: flip ? 'scaleX(-1)' : 'none' }}>
+      <svg width="72" height="72" viewBox="0 0 100 100">
+        <circle cx="50" cy="55" r="34" fill="#FFFFFF" stroke="#20201C" strokeWidth="3" />
+        <circle cx="24" cy="24" r="14" fill="#20201C" />
+        <circle cx="76" cy="24" r="14" fill="#20201C" />
+        <ellipse cx="34" cy="50" rx="10" ry="13" fill="#20201C" />
+        <ellipse cx="66" cy="50" rx="10" ry="13" fill="#20201C" />
+        <circle cx="34" cy="50" r="4" fill="#FFFFFF" />
+        <circle cx="66" cy="50" r="4" fill="#FFFFFF" />
+        <ellipse cx="50" cy="63" rx="6" ry="4" fill="#20201C" />
+        <path d="M42 70 Q50 76 58 70" stroke="#20201C" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      </svg>
+      <span
+        className="text-[10px] font-black px-2 py-1 rounded-full"
+        style={{ background: `${color}22`, color, transform: flip ? 'scaleX(-1)' : 'none' }}
+      >
+        {label}
+      </span>
     </div>
   );
 }
